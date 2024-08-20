@@ -1,10 +1,16 @@
-export default function FeaturedRecipeCard() {
+import { Recipe } from "../types/type";
+
+export default function FeaturedRecipeCard({
+  recipe,
+}: FeaturedRecipeCardProps) {
+  const baseURL = "http://delirecipesbwa.test/storage";
+
   return (
     <div className="!w-fit">
       <a href="details.html" className="card">
         <div className="relative w-[200px] h-[280px] rounded-[30px] bg-white overflow-hidden">
           <img
-            src="/assets/images/thumbnails/thumbnail-1.png"
+            src={`${baseURL}/${recipe.thumbnail}`}
             className="absolute w-full h-full object-cover"
             alt="thumbnails"
           />
@@ -22,10 +28,10 @@ export default function FeaturedRecipeCard() {
             </div>
             <div className="flex flex-col gap-[6px]">
               <h3 className="font-bold text-xl leading-[28px] text-white">
-                Orange Cake Masterpieces
+                {recipe.name}
               </h3>
               <p className="font-semibold text-xs leading-[18px] text-[#FF4C1C]">
-                Sweet
+                {recipe.category.name}
               </p>
             </div>
           </div>
@@ -33,4 +39,8 @@ export default function FeaturedRecipeCard() {
       </a>
     </div>
   );
+}
+
+interface FeaturedRecipeCardProps {
+  recipe: Recipe;
 }
